@@ -50,46 +50,9 @@ const Signin = () => {
   return (
     <div>
       <Head>
-        <title>Login Page</title>
+        <title>Login</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="vh-100 d-flex justify-content-center align-items-center">
-        <div className={' p-3'}>
-          <h1 className="display-6 mb-3">Login</h1>
-          <Formik
-            initialValues={{
-              email: '',
-              password: '',
-            }}
-
-            onSubmit={async (
-              values: Values,
-              { setSubmitting }: FormikHelpers<Values>
-            ) => {
-              // setTimeout(() => {
-              //   alert(JSON.stringify(values, null, 2));
-              //   setSubmitting(false);
-              // }, 500);
-              // useMutation
-              loginMutate(values)
-
-            }}
-          >
-            <Form>
-              <div className="mb-3">
-                <Field className="form-control" id="email" name="email" placeholder="email" aria-describedby="usernameHelp" />
-              </div>
-
-              <div className="mb-3">
-                <Field className="form-control" id="password" name="password" placeholder="Password" type="password" />
-              </div>
-
-              <button type="submit" className="btn btn-primary">Login</button>
-            </Form>
-          </Formik>
-        </div>
-      </main>
-
       <Container maxWidth="lg">
         <Grid
           container
@@ -97,6 +60,7 @@ const Signin = () => {
           justifyContent="center"
           alignItems="stretch"
           spacing={3}
+          sx={{ padding: 10 }}
         >
           <Grid item xs={6} sx={{ padding: 2 }}>
             <Card>

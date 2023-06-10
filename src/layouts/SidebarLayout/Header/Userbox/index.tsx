@@ -22,6 +22,8 @@ import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
+import useAuthStore from '@/states/authStore';
+import { useRouter } from 'next/router';
 
 const UserBoxButton = styled(Button)(
   ({ theme }) => `
@@ -75,6 +77,9 @@ function HeaderUserbox() {
   const handleClose = (): void => {
     setOpen(false);
   };
+
+  const storeAuthToken = useAuthStore((state: any) => state.storeAuthToken)
+  const router = useRouter()
 
   return (
     <>
@@ -137,7 +142,10 @@ function HeaderUserbox() {
         </List>
         <Divider />
         <Box sx={{ m: 1 }}>
-          <Button color="primary" fullWidth>
+          <Button color="primary" fullWidth onClick={() => {
+            storeAuthToken('')
+            router.push('/signin')
+          }}>
             <LockOpenTwoToneIcon sx={{ mr: 1 }} />
             Sign out
           </Button>
