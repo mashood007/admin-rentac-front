@@ -54,7 +54,7 @@ function Overview() {
               <Box>
                 <Button
                   component={Link}
-                  href="/dashboards/crypto"
+                  href="/dashboard"
                   variant="contained"
                   sx={{ ml: 2 }}
                 >

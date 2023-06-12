@@ -22,8 +22,8 @@ import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
-import useAuthStore from '@/states/authStore';
 import { useRouter } from 'next/router';
+import useUserStore from '@/states/userStore';
 
 const UserBoxButton = styled(Button)(
   ({ theme }) => `
@@ -78,7 +78,7 @@ function HeaderUserbox() {
     setOpen(false);
   };
 
-  const storeAuthToken = useAuthStore((state: any) => state.storeAuthToken)
+  const storeAuthToken = useUserStore((state: any) => state.storeAuthToken)
   const router = useRouter()
 
   return (

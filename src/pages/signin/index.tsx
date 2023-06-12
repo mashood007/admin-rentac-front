@@ -1,40 +1,19 @@
 import Head from 'next/head'
 // import signinStyle from '@/styles/Signin.module.css'
-import { Formik, Field, Form, FormikHelpers } from 'formik';
-import { useMutation, QueryClient, useQueryClient } from 'react-query'
+import { useMutation } from 'react-query'
 import { login } from '@/api/auth/login'
 // import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
-import useAuthStore from '@/states/authStore'
-import { Box, Button, Card, CardContent, CardHeader, Container, Divider, Grid, TextField } from '@mui/material';
+import { Box, Button, Card, CardContent, Container, Divider, Grid, TextField } from '@mui/material';
 import { useState } from 'react';
+import useUserStore from '@/states/userStore';
 
 
-interface Values {
-  email: string;
-  password: string;
-}
-
-// const { mutate: deleteApprovalGroupMutate, isLoading: isDeleteLoading } = useMutation('login', login, {
-//   onSuccess: () => {
-//     // Invalidate and refetch
-//     // queryClient.invalidateQueries({ queryKey: ['todos'] })
-//     // return ""
-//   },
-// })
-
-
-
-// const { mutate: deleteApprovalGroupMutate, isLoading: isDeleteLoading } = useMutation('deleteApprovalGroups', deleteApprovalGroup, {
-//   onSuccess: () => {
-//     toast.success('Approval policy deleted successfully!');
-//     props?.refetchApprovalGroups();
-//   },
-// })
 
 const Signin = () => {
   const router = useRouter()
-  const storeAuthToken = useAuthStore((state: any) => state.storeAuthToken)
+  const storeAuthToken = useUserStore((state: any) => state.storeAuthToken)
+  const storeUser = useUserStore((state: any) => state.storeUser)
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -44,6 +23,8 @@ const Signin = () => {
     onSuccess: (response: any) => {
       const { data } = response
       storeAuthToken(data?.accessToken)
+      storeUser({ email: data?.email, userId: data?.userId })
+      localStorage.setItem('accessToken', JSON.stringify(data?.accessToken))
       router.push('/')
     },
   })

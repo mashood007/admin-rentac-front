@@ -121,7 +121,7 @@ function Hero() {
           </TypographyH2>
           <Button
             component={Link}
-            href="/dashboards/crypto"
+            href="/dashboard"
             size="large"
             variant="contained"
           >

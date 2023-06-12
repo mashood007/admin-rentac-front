@@ -3,7 +3,7 @@ import { ReactNode, ReactElement, useEffect } from 'react'
 
 // ** Next Import
 import { useRouter } from 'next/router'
-import useAuthStore from '@/states/authStore'
+import useUserStore from '@/states/userStore'
 
 // ** Hooks Import
 // import { useAuth } from 'src/hooks/useAuth'
@@ -17,8 +17,7 @@ interface AuthGuardProps {
 
 const AuthGuard = (props: AuthGuardProps) => {
   const { children, fallback } = props
-  const auth = useAuthStore()
-  const accessToken = useAuthStore((state: any) => state.accessToken)
+  const accessToken = useUserStore((state: any) => state.accessToken)
 
   const router = useRouter()
   // const userDetails = useStore((state: any) => state.userDetails)
